@@ -67,25 +67,24 @@ test('Create Virginia Reader Choice Order', async ({ page }) => {
     // Order Number
     await page.locator("//input[@id='bbox_number']").fill(orderNumber);
 
-    // School Name
-    await page.locator("//input[@id='b_school']").click();
+    const schoolField = page.locator("#b_school");
 
-    await page.locator("//input[@id='b_school']").pressSequentially(
-        "Demo Elementary",
-        { delay: 150 }
-    );
+await schoolField.click();
 
-    await page.waitForTimeout(1000);
+await schoolField.pressSequentially(
+    "Demo Elementary",
+    { delay: 150 }
+);
 
-    // Select Demo Elementary School
-    await page.keyboard.press("ArrowDown");
-    await page.keyboard.press("Enter");
+await page.waitForTimeout(1000);
 
-    // Trigger auto-fill
-    await page.keyboard.press("Tab");
+await page.keyboard.press("ArrowDown");
+await page.keyboard.press("Enter");
 
-    // Wait for auto-filled values
-    await page.waitForTimeout(2000);
+await page.keyboard.press("Tab");
+
+await page.waitForTimeout(2000);
+
 
     // Replace Phone Number
     await page.locator("//input[@id='bphone']").clear();
